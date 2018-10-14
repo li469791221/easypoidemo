@@ -1,0 +1,27 @@
+nginx:
+ url: 192.168.25.133
+#fdfs.connect-timeout=600
+#fdfs.so-timeout=1500
+#fdfs.tracker-list[0]=${nginx.url}:22122
+#fdfs.thumbImage.height=150
+#fdfs.thumbImage.width=150
+#IMAGE_SERVER_URL=http://192.168.25.133/
+#spring.jmx.enabled=false
+
+# 分布式文件系统FDFS配置
+fdfs:
+ soTimeout: 1500 #socket连接超时时长
+ connectTimeout: 600 #连接tracker服务器超时时长
+# resHost: 192.168.1.11
+ storagePort: 80
+ thumbImage: #缩略图生成参数，可选
+  width: 150
+  height: 150
+ trackerList: #TrackerList参数,支持多个，我这里只有一个，如果有多个在下方加- x.x.x.x:port
+  - ${nginx.url}:22122
+
+
+server:
+ port: 8080
+ servlet:
+  path: /
